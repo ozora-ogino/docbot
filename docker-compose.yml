@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: docbot-backend
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+    volumes:
+      - ./document:/workspace/document:ro
+    ports:
+      - "8003:8000"
+    networks:
+      - docbot-network
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp
+
+  frontend:
+    build: ./frontend
+    container_name: docbot-frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - docbot-network
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://backend:8000
+
+networks:
+  docbot-network:
+    driver: bridge

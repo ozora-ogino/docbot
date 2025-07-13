@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "docbot-backend"
+version = "0.1.0"
+description = "Read-only bash chatbot backend"
+authors = ["Your Name <you@example.com>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.0"
+uvicorn = {extras = ["standard"], version = "^0.32.0"}
+google-generativeai = "^0.7.2"
+pydantic = "^2.10.0"
+pydantic-settings = "^2.2.1"
+python-dotenv = "^1.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
