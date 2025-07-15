@@ -65,7 +65,7 @@ const MarkdownComponents = {
     <p className="text-gray-700 mb-3 leading-relaxed" {...props} />
   ),
   a: ({ node, ...props }: any) => (
-    <a className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer" {...props} />
+    <a className="text-indigo-600 hover:text-indigo-800 underline" target="_blank" rel="noopener noreferrer" {...props} />
   ),
   ul: ({ node, ...props }: any) => (
     <ul className="list-disc list-inside my-3 space-y-1 text-gray-700" {...props} />
@@ -77,7 +77,7 @@ const MarkdownComponents = {
     <li className="ml-2" {...props} />
   ),
   blockquote: ({ node, ...props }: any) => (
-    <blockquote className="border-l-4 border-blue-400 bg-blue-50 pl-4 py-2 italic my-3 text-gray-700" {...props} />
+    <blockquote className="border-l-4 border-indigo-400 bg-indigo-50 pl-4 py-2 italic my-3 text-gray-700 rounded-r-lg" {...props} />
   ),
   table: ({ node, ...props }: any) => (
     <div className="overflow-x-auto my-4">
@@ -118,11 +118,11 @@ export const Message = memo(function Message({ type, content, timestamp, debugMo
     type === 'final' ? 'Assistant' : 'Assistant'
 
   const messageClassName = `relative group rounded-xl px-5 py-4 transition-all duration-300 ${
-    type === 'user' ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg' :
-    type === 'command' ? 'bg-gray-800 text-green-400 font-mono text-sm' :
-    type === 'result' ? 'bg-gray-100 font-mono text-sm whitespace-pre-wrap' :
+    type === 'user' ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg' :
+    type === 'command' ? 'bg-gray-900 text-emerald-400 font-mono text-sm border border-gray-700' :
+    type === 'result' ? 'bg-gray-50 font-mono text-sm whitespace-pre-wrap border border-gray-200' :
     type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
-    type === 'progress' ? 'bg-yellow-50 text-yellow-800 italic' :
+    type === 'progress' ? 'bg-amber-50 text-amber-800 italic border border-amber-200' :
     type === 'thinking' ? styles.thinkingMessage :
     type === 'final' ? styles.finalAnswer :
     styles.assistantMessage
@@ -135,8 +135,8 @@ export const Message = memo(function Message({ type, content, timestamp, debugMo
       : 'prose max-w-none prose-sm prose-headings:text-gray-700 prose-p:text-gray-600 prose-a:text-blue-600 prose-strong:text-gray-800 prose-code:text-pink-600 prose-pre:bg-gray-800 prose-pre:text-gray-100'
 
   return (
-    <div className={`mb-3 ${type === 'user' ? 'text-right' : 'text-left'}`}>
-      <div className={`inline-block max-w-[80%] ${type === 'user' ? 'ml-auto' : ''}`}>
+    <div className={`mb-4 ${type === 'user' ? 'text-right' : 'text-left'} animate-fadeIn`}>
+      <div className={`inline-block max-w-[85%] ${type === 'user' ? 'ml-auto' : ''}`}>
         {type !== 'progress' && (
           <div className="text-xs text-gray-500 mb-1 flex items-center gap-2">
             {type === 'thinking' && (
@@ -147,11 +147,11 @@ export const Message = memo(function Message({ type, content, timestamp, debugMo
               </div>
             )}
             {type === 'final' && (
-              <span className="inline-flex items-center gap-1 text-xs font-medium text-green-700">
+              <span className="inline-flex items-center gap-1 text-xs font-medium text-indigo-700 bg-indigo-100 px-2 py-1 rounded-full">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Answer
+                Final Answer
               </span>
             )}
             <span>

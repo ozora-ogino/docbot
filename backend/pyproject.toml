@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "docbot-backend"
+name = "docagent-backend"
 version = "0.1.0"
-description = "Read-only bash chatbot backend"
+description = "AI-powered document exploration agent backend"
 authors = ["Your Name <you@example.com>"]
 package-mode = false
 
